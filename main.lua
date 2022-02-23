@@ -719,14 +719,9 @@ do
 			end
 			
 			-- animation
-			utility:Ripple(button)
+			Ripple(button)
 			
 			debounce = true
-			text.TextSize = 0
-			utility:Tween(button.Title, {TextSize = 14}, 0.2)
-			
-			wait(0.2)
-			utility:Tween(button.Title, {TextSize = 12}, 0.2)
 			
 			if callback then
 				callback(function(...)
@@ -892,7 +887,7 @@ do
 		input:GetPropertyChangedSignal("Text"):Connect(function()
 			
 			if button.ImageTransparency == 0 and (button.Size == UDim2.new(0, 200, 0, 16) or button.Size == UDim2.new(0, 100, 0, 16)) then -- i know, i dont like this either
-				utility:Ripple(button)
+				Ripple(button)
 			end
 			
 			if callback then
@@ -981,7 +976,7 @@ do
 		
 		local animate = function()
 			if button.ImageTransparency == 0 then
-				utility:Ripple(button)
+				Ripple(button)
 			end
 		end
 		
@@ -1488,7 +1483,7 @@ do
 				end
 				
 				if button.ImageTransparency == 0 then
-					utility:Ripple(button)
+					Ripple(button)
 				end
 			end
 			
@@ -2104,7 +2099,7 @@ do
 		utility:Tween(bar.Fill, {Size = UDim2.new(percent, 0, 1, 0)}, 0.1)
 		
 		if value ~= lvalue and slider.ImageTransparency == 0 then
-			utility:Ripple(slider)
+			Ripple(slider)
 		end
 		
 		return value
