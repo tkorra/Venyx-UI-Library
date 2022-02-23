@@ -105,6 +105,26 @@ do
 		return clone
 	end
 	
+	function utility:Ripple(Object)
+	spawn(function()
+		local Circle = Instance.new("ImageLabel")
+		Circle.Parent = Object
+		Circle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Circle.BackgroundTransparency = 1.000
+		Circle.ZIndex = 10
+		Circle.Image = "rbxassetid://266543268"
+		Circle.ImageColor3 = Color3.fromRGB(210,210,210)
+		Circle.ImageTransparency = 0.8
+		Circle.Position = UDim2.new(0, mouse.X - Circle.AbsolutePosition.X, 0, mouse.Y - Circle.AbsolutePosition.Y)
+		local Size = Object.AbsoluteSize.X
+		utility:Tween(Circle, 0.5, {Position = UDim2.fromScale(math.clamp(mouse.X - Object.AbsolutePosition.X, 0, Object.AbsoluteSize.X)/Object.AbsoluteSize.X, Object, math.clamp(mouse.Y - Object.AbsolutePosition.Y, 0, Object.AbsoluteSize.Y)/Object.AbsoluteSize.Y) - UDim2.fromOffset(Size/2,Size/2), ImageTransparency = 1, Size = UDim2.fromOffset(Size, Size)})
+		spawn(function()
+			wait(0.5)
+			Circle:Destroy()
+		end)
+	end)
+end
+	
 	function utility:InitializeKeybind()
 		self.keybinds = {}
 		self.ended = {}
@@ -699,7 +719,7 @@ do
 			end
 			
 			-- animation
-			utility:Pop(button, 10)
+			utility:Ripple(button)
 			
 			debounce = true
 			text.TextSize = 0
