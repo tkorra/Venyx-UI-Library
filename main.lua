@@ -719,7 +719,7 @@ do
 			end
 			
 			-- animation
-			utility:Ripple(button)
+			utility:Pop(button, 10)
 			
 			debounce = true
 			
@@ -887,7 +887,7 @@ do
 		input:GetPropertyChangedSignal("Text"):Connect(function()
 			
 			if button.ImageTransparency == 0 and (button.Size == UDim2.new(0, 200, 0, 16) or button.Size == UDim2.new(0, 100, 0, 16)) then -- i know, i dont like this either
-				utility:Ripple(button)
+				utility:Pop(button, 10)
 			end
 			
 			if callback then
@@ -976,7 +976,7 @@ do
 		
 		local animate = function()
 			if button.ImageTransparency == 0 then
-				utility:Ripple(button)
+				utility:Pop(button, 10)
 			end
 		end
 		
@@ -1483,7 +1483,7 @@ do
 				end
 				
 				if button.ImageTransparency == 0 then
-					utility:Ripple(button)
+					utility:Pop(button, 10)
 				end
 			end
 			
@@ -2099,7 +2099,7 @@ do
 		utility:Tween(bar.Fill, {Size = UDim2.new(percent, 0, 1, 0)}, 0.1)
 		
 		if value ~= lvalue and slider.ImageTransparency == 0 then
-			utility:Ripple(slider)
+			utility:Pop(slider, 10)
 		end
 		
 		return value
