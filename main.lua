@@ -82,7 +82,7 @@ do
 		return new
 	end
 	
-	function utility:Ripple(Object)
+	function Ripple(Object)
 	spawn(function()
 		local Circle = Instance.new("ImageLabel")
 		Circle.Parent = Object
