@@ -82,6 +82,26 @@ do
 		return new
 	end
 	
+	function utility:Ripple(Object)
+	spawn(function()
+		local Circle = Instance.new("ImageLabel")
+		Circle.Parent = Object
+		Circle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Circle.BackgroundTransparency = 1.000
+		Circle.ZIndex = 10
+		Circle.Image = "rbxassetid://266543268"
+		Circle.ImageColor3 = Color3.fromRGB(210,210,210)
+		Circle.ImageTransparency = 0.8
+		Circle.Position = UDim2.new(0, Mouse.X - Circle.AbsolutePosition.X, 0, Mouse.Y - Circle.AbsolutePosition.Y)
+		local Size = Object.AbsoluteSize.X
+		TweenService:Create(Circle, TweenInfo.new(0.5), {Position = UDim2.fromScale(math.clamp(Mouse.X - Object.AbsolutePosition.X, 0, Object.AbsoluteSize.X)/Object.AbsoluteSize.X,Object,math.clamp(Mouse.Y - Object.AbsolutePosition.Y, 0, Object.AbsoluteSize.Y)/Object.AbsoluteSize.Y) - UDim2.fromOffset(Size/2,Size/2), ImageTransparency = 1, Size = UDim2.fromOffset(Size,Size)}):Play()
+		spawn(function()
+			wait(0.5)
+			Circle:Destroy()
+		end)
+	end)
+	end
+	
 	function utility:Pop(object, shrink)
 		local clone = object:Clone()
 		
@@ -699,7 +719,7 @@ do
 			end
 			
 			-- animation
-			utility:Pop(button, 10)
+			utility:Ripple(button)
 			
 			debounce = true
 			text.TextSize = 0
@@ -872,7 +892,7 @@ do
 		input:GetPropertyChangedSignal("Text"):Connect(function()
 			
 			if button.ImageTransparency == 0 and (button.Size == UDim2.new(0, 200, 0, 16) or button.Size == UDim2.new(0, 100, 0, 16)) then -- i know, i dont like this either
-				utility:Pop(button, 10)
+				utility:Ripple(button)
 			end
 			
 			if callback then
@@ -961,7 +981,7 @@ do
 		
 		local animate = function()
 			if button.ImageTransparency == 0 then
-				utility:Pop(button, 10)
+				utility:Ripple(button)
 			end
 		end
 		
@@ -1468,7 +1488,7 @@ do
 				end
 				
 				if button.ImageTransparency == 0 then
-					utility:Pop(button, 10)
+					utility:Ripple(button)
 				end
 			end
 			
@@ -2099,7 +2119,7 @@ do
 		
 		local entries = 0
 		
-		utility:Pop(dropdown.Search, 10)
+		utility:Ripple(dropdown.Search)
 		
 		for i, button in pairs(dropdown.List.Frame:GetChildren()) do
 			if button:IsA("ImageButton") then
@@ -2168,5 +2188,4 @@ do
 	end
 end
 
-print("dino was here :\)")
 return library
