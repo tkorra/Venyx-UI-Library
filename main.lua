@@ -2104,7 +2104,7 @@ do
 		utility:Tween(bar.Fill, {Size = UDim2.new(percent, 0, 1, 0)}, 0.1)
 		
 		if value ~= lvalue and slider.ImageTransparency == 0 then
-			utility:Pop(slider, 10)
+			utility:Ripple(slider)
 		end
 		
 		return value
