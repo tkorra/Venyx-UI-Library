@@ -140,6 +140,9 @@ do
 	        
 	        circle:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, -size / 2, 0.5, -size / 2), "Out", "Quad", 0.5, false, nil)
 	        utility:Resize(circle, {ImageTransparency = 1}, 0.5)
+				
+		wait(0.5)
+		circle:Destroy()
 	    end)
 	end
 	        
