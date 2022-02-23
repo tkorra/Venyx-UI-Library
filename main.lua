@@ -88,13 +88,6 @@ do
 		return new
 	end
 	
-	function utility:Resize(part, new, _delay)
-	    _delay = _delay or 0.5
-	    local tweenInfo = tweeninfo(_delay, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-	    local tweenService = tween:Create(part, tweenInfo, new)
-	    tweenService:Play()
-    end
-	
 	function utility:Pop(object, shrink)
 		local clone = object:Clone()
 		
@@ -139,7 +132,7 @@ do
 	        end
 	        
 	        circle:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, -size / 2, 0.5, -size / 2), "Out", "Quad", 0.5, false, nil)
-	        utility:Resize(circle, {ImageTransparency = 1}, 0.5)
+	        utility:Tween(circle, {ImageTransparency = 1}, 0.5)
 				
 		wait(0.5)
 		circle:Destroy()
