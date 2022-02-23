@@ -90,7 +90,7 @@ do
 	
 	function utility:Resize(part, new, _delay)
 	    _delay = _delay or 0.5
-	    local tweenInfo = tweeninfo.new(_delay, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+	    local tweenInfo = tweeninfo(_delay, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 	    local tweenService = tween:Create(part, tweenInfo, new)
 	    tweenService:Play()
     end
