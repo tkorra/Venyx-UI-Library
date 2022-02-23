@@ -7,6 +7,12 @@ local input = game:GetService("UserInputService")
 local run = game:GetService("RunService")
 local tween = game:GetService("TweenService")
 local tweeninfo = TweenInfo.new
+local Circle = Instance.new("ImageLabel")
+Circle.Name = "Circle"
+Circle.BackgroundColor3 = Color3.new(1, 1, 1)
+Circle.BackgroundTransparency = 1
+Circle.Image = "rbxassetid://266543268"
+Circle.ImageTransparency = 0.5
 
 -- additional
 local utility = {}
@@ -82,6 +88,13 @@ do
 		return new
 	end
 	
+	function utility:Resize(part, new, _delay)
+	    _delay = _delay or 0.5
+	    local tweenInfo = tweeninfo.new(_delay, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+	    local tweenService = tween:Create(part, tweenInfo, new)
+	    tweenService:Play()
+    end
+	
 	function utility:Pop(object, shrink)
 		local clone = object:Clone()
 		
@@ -104,6 +117,32 @@ do
 		
 		return clone
 	end
+	
+	function utility:Ripple(object, x, y)
+	    spawn(function()
+	        object.ClipsDescendants = true
+	        local circle = Circle:Clone()
+	        circle.Parent = object
+	        circle.ZIndex = 1000
+	        
+	        local new_x = x - circle.AbsolutePosition.X
+	        local new_y = y - circle.AbsolutePosition.Y
+	        circle.Position = UDim2.new(0, new_x, 0, new_y)
+	        
+	        local size = 0
+	        if object.AbsoluteSize.X > object.AbsoluteSize.Y then
+	            size = object.AbsoluteSize.X * 1.5
+	        elseif object.AbsoluteSize.X < object.AbsoluteSize.Y then
+	            size = object.AbsoluteSize.Y * 1.5
+	        elseif object.AbsoluteSize.X == object.AbsoluteSize.Y then
+	            size = object.AbsoluteSize.X * 1.5
+	        end
+	        
+	        circle:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, -size / 2, 0.5, -size / 2), "Out", "Quad", 0.5, false, nil)
+	        utility:Resize(circle, {ImageTransparency = 1}, 0.5)
+	    end)
+	end
+	        
 	
 	function utility:InitializeKeybind()
 		self.keybinds = {}
@@ -699,7 +738,7 @@ do
 			end
 			
 			-- animation
-			utility:Pop(button, 10)
+			utility:Ripple(button, mouse.X, mouse.Y)
 			
 			debounce = true
 			text.TextSize = 0
@@ -2168,5 +2207,4 @@ do
 	end
 end
 
-print("dino was here :\)")
 return library
