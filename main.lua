@@ -83,25 +83,20 @@ do
 	end
 	
 	function utility:Pop(object, shrink)
-		local clone = object:Clone()
-		
-		clone.AnchorPoint = Vector2.new(0.5, 0.5)
-		clone.Size = clone.Size - UDim2.new(0, shrink, 0, shrink)
-		clone.Position = UDim2.new(0.5, 0, 0.5, 0)
-		
-		clone.Parent = object
-		clone:ClearAllChildren()
-		
-		object.ImageTransparency = 1
-		utility:Tween(clone, {Size = object.Size}, 0.2)
-		
+		local Circle = Instance.new("ImageLabel")
+		Circle.Parent = object
+		Circle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Circle.BackgroundTransparency = 1.000
+		Circle.ZIndex = 10
+		Circle.Image = "rbxassetid://266543268"
+		Circle.ImageColor3 = Color3.fromRGB(210,210,210)
+		Circle.ImageTransparency = 0.8
+		Circle.Position = UDim2.new(0, mouse.X - Circle.AbsolutePosition.X, 0, mouse.Y - Circle.AbsolutePosition.Y)
+		local Size = object.AbsoluteSize.X
+		tween:Create(Circle, tweeninfo(0.5), {Position = UDim2.fromScale(math.clamp(mouse.X - object.AbsolutePosition.X, 0, object.AbsoluteSize.X)/object.AbsoluteSize.X,object,math.clamp(mouse.Y - object.AbsolutePosition.Y, 0, object.AbsoluteSize.Y)/object.AbsoluteSize.Y) - UDim2.fromOffset(Size/2,Size/2), ImageTransparency = 1, Size = UDim2.fromOffset(Size,Size)}):Play()
 		spawn(function()
-			wait(0.2)
-		
-			object.ImageTransparency = 0
-			clone:Destroy()
-		end)
-		
+			wait(0.5)
+			Circle:Destroy()
 		return clone
 	end
 	
@@ -2168,5 +2163,4 @@ do
 	end
 end
 
-print("dino was here :\)")
 return library
