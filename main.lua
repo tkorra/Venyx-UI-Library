@@ -105,26 +105,6 @@ do
 		return clone
 	end
 	
-	function utility:Ripple(Object)
-	spawn(function()
-		local Circle = Instance.new("ImageLabel")
-		Circle.Parent = Object
-		Circle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		Circle.BackgroundTransparency = 1.000
-		Circle.ZIndex = 10
-		Circle.Image = "rbxassetid://266543268"
-		Circle.ImageColor3 = Color3.fromRGB(210,210,210)
-		Circle.ImageTransparency = 0.8
-		Circle.Position = UDim2.new(0, mouse.X - Circle.AbsolutePosition.X, 0, mouse.Y - Circle.AbsolutePosition.Y)
-		local Size = Object.AbsoluteSize.X
-		tween:Create(Circle, tweeninfo(0.5), {Position = UDim2.fromScale(math.clamp(mouse.X - Object.AbsolutePosition.X, 0, Object.AbsoluteSize.X)/Object.AbsoluteSize.X,Object,math.clamp(mouse.Y - Object.AbsolutePosition.Y, 0, Object.AbsoluteSize.Y)/Object.AbsoluteSize.Y) - UDim2.fromOffset(Size/2,Size/2), ImageTransparency = 1, Size = UDim2.fromOffset(Size,Size)}, 0.2):Play()
-		spawn(function()
-			wait(0.5)
-			Circle:Destroy()
-		end)
-	end)
-end
-	
 	function utility:InitializeKeybind()
 		self.keybinds = {}
 		self.ended = {}
@@ -722,6 +702,11 @@ do
 			utility:Pop(button, 10)
 			
 			debounce = true
+			text.TextSize = 0
+			utility:Tween(button.Title, {TextSize = 14}, 0.2)
+			
+			wait(0.2)
+			utility:Tween(button.Title, {TextSize = 12}, 0.2)
 			
 			if callback then
 				callback(function(...)
@@ -2114,7 +2099,7 @@ do
 		
 		local entries = 0
 		
-		utility:Ripple(dropdown.Search)
+		utility:Pop(dropdown.Search, 10)
 		
 		for i, button in pairs(dropdown.List.Frame:GetChildren()) do
 			if button:IsA("ImageButton") then
@@ -2183,4 +2168,5 @@ do
 	end
 end
 
+print("dino was here :\)")
 return library
