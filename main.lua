@@ -719,7 +719,7 @@ do
 			end
 			
 			-- animation
-			utility:Ripple(button)
+			utility:Ripple(button, 0.5)
 			
 			debounce = true
 			text.TextSize = 0
