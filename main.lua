@@ -908,8 +908,6 @@ do
 		input:GetPropertyChangedSignal("Text"):Connect(function()
 			
 			if button.ImageTransparency == 0 and (button.Size == UDim2.new(0, 200, 0, 16) or button.Size == UDim2.new(0, 100, 0, 16)) then -- i know, i dont like this either
-				utility:Pop(button, 10)
-				utility:Ripple(button, mouse.X, mouse.Y)
 			end
 			
 			if callback then
@@ -1506,7 +1504,6 @@ do
 				
 				if button.ImageTransparency == 0 then
 					utility:Pop(button, 10)
-					utility:Ripple(button, mouse.X, mouse.Y)
 				end
 			end
 			
