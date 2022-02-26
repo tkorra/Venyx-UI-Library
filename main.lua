@@ -2137,7 +2137,6 @@ do
 		local entries = 0
 		
 		utility:Pop(dropdown.Search, 10)
-		utility:Ripple(dropdown.Search, mouse.X, mouse.Y)
 		
 		for i, button in pairs(dropdown.List.Frame:GetChildren()) do
 			if button:IsA("ImageButton") then
