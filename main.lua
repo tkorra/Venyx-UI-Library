@@ -13,7 +13,7 @@ Circle.BackgroundColor3 = Color3.new(0,0,0)
 Circle.BackgroundTransparency = 1
 Circle.Image = "rbxassetid://266543268"
 Circle.ImageTransparency = 0.5
-Circle.ImageColor3 = Color3.new(0,0,0)
+Circle.ImageColor3 = Color3.new(1,1,1)
 
 -- additional
 local utility = {}
